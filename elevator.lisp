@@ -255,7 +255,8 @@
     (start-emergency elevator)
     (assert (every #'null (requests elevator)))
     (next-floor elevator)
-    (assert (eq (current-floor elevator) 2))))
+    (assert (eq (current-floor elevator) 2))
+    (format t "OK.~%")))
 
 
    

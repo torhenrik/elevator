@@ -1,0 +1,110 @@
+TEST 1: We're going down, and a request is coming below.  We continue down.
+Elevator with 5 floors, traveltime is 10 and stoptime is 5.
+No emergency.
+Current floor is 3.
+Direction is DOWN, will go DOWN next.
+Stops requested at: (1).
+Estimated arrival times:
+   Floor 4: 75 seconds.  Path: (2 1 0 1 2 3 4)
+>  Floor 3: 0 seconds.  
+   Floor 2: 10 seconds.  Path: (2)
+ * Floor 1: 25 seconds.  Path: (2 1)
+   Floor 0: 35 seconds.  Path: (2 1 0)
+
+Elevator with 5 floors, traveltime is 10 and stoptime is 5.
+No emergency.
+Current floor is 3.
+Direction is DOWN, will go DOWN next.
+Stops requested at: (1).
+Estimated arrival times:
+   Floor 4: 75 seconds.  Path: (2 1 0 1 2 3 4)
+>  Floor 3: 0 seconds.  
+   Floor 2: 10 seconds.  Path: (2)
+ * Floor 1: 25 seconds.  Path: (2 1)
+   Floor 0: 35 seconds.  Path: (2 1 0)
+
+OK.
+TEST 2: We're going down, and a request is coming above.  We continue down before we go up again.
+Elevator with 5 floors, traveltime is 10 and stoptime is 5.
+No emergency.
+Current floor is 3.
+Direction is DOWN, will go DOWN next.
+Stops requested at: (4).
+Estimated arrival times:
+ * Floor 4: 70 seconds.  Path: (2 1 0 1 2 3 4)
+>  Floor 3: 0 seconds.  
+   Floor 2: 10 seconds.  Path: (2)
+   Floor 1: 20 seconds.  Path: (2 1)
+   Floor 0: 30 seconds.  Path: (2 1 0)
+
+OK.
+TEST 3: We're going up, and a request is coming above.  We continue up.
+Elevator with 5 floors, traveltime is 10 and stoptime is 5.
+No emergency.
+Current floor is 2.
+Direction is UP, will go UP next.
+Stops requested at: (3).
+Estimated arrival times:
+   Floor 4: 25 seconds.  Path: (3 4)
+ * Floor 3: 10 seconds.  Path: (3)
+>  Floor 2: 0 seconds.  
+   Floor 1: 30 seconds.  Path: (3 2 1)
+   Floor 0: 40 seconds.  Path: (3 2 1 0)
+
+OK.
+TEST 4: We're going up with a request above. A request is coming below.  We continue up.
+Elevator with 5 floors, traveltime is 10 and stoptime is 5.
+No emergency.
+Current floor is 3.
+Direction is UP, will go UP next.
+Stops requested at: (4 2).
+Estimated arrival times:
+ * Floor 4: 10 seconds.  Path: (4)
+>  Floor 3: 0 seconds.  
+ * Floor 2: 35 seconds.  Path: (4 3 2)
+   Floor 1: 45 seconds.  Path: (4 3 2 1)
+   Floor 0: 55 seconds.  Path: (4 3 2 1 0)
+
+OK.
+TEST 5: We're going up with no requests above.  We go down.
+Elevator with 5 floors, traveltime is 10 and stoptime is 5.
+No emergency.
+Current floor is 2.
+Direction is UP, will go DOWN next.
+Stops requested : None.
+Estimated arrival times:
+   Floor 4: 60 seconds.  Path: (3 4)
+   Floor 3: 50 seconds.  Path: (3)
+>  Floor 2: 0 seconds.  
+   Floor 1: 10 seconds.  Path: (1)
+   Floor 0: 20 seconds.  Path: (1 0)
+
+OK.
+TEST 6: We're at ground level with no requests.  We don't move.
+Elevator with 5 floors, traveltime is 10 and stoptime is 5.
+No emergency.
+Current floor is 0.
+Direction is DOWN, will go DOWN next.
+Stops requested : None.
+Estimated arrival times:
+   Floor 4: 40 seconds.  Path: (1 2 3 4)
+   Floor 3: 30 seconds.  Path: (1 2 3)
+   Floor 2: 20 seconds.  Path: (1 2)
+   Floor 1: 10 seconds.  Path: (1)
+>  Floor 0: 0 seconds.  
+
+OK.
+TEST 7: Emergency has been pressed.  The requests are cleared and we don't move.
+Elevator with 5 floors, traveltime is 10 and stoptime is 5.
+No emergency.
+Current floor is 2.
+Direction is UP, will go UP next.
+Stops requested at: (3 1).
+Estimated arrival times:
+   Floor 4: 25 seconds.  Path: (3 4)
+ * Floor 3: 10 seconds.  Path: (3)
+>  Floor 2: 0 seconds.  
+ * Floor 1: 35 seconds.  Path: (3 2 1)
+   Floor 0: 45 seconds.  Path: (3 2 1 0)
+
+OK.
