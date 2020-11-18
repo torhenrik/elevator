@@ -153,7 +153,7 @@
   (setf (emergency-p elevator) t))
 
 (defmethod stop-emergency ((elevator elevator))
-  (setf (emergency-p elevator) t))
+  (setf (emergency-p elevator) nil))
 
 
 
@@ -194,42 +194,6 @@
       (format t "~%")))
   (format t "~%"))
 
-
-(defmethod estimated-arrival-time ((elevator elevator) floor)
-  (let ((travel-time (travel-time elevator))
-        (stop-time (stop-time elevator)))
-  (cond ((and (< floor (current-floor elevator))
-              (eq (next-direction elevator) :down))
-         ;; We go down to the target floor.
-         (+ (* (number-of-floors-between (current-floor elevator) floor) travel-time)
-            (* (number-of-requests-between elevator (current-floor elevator) floor) stop-time)))
-
-        ((and (> floor (current-floor elevator))
-              (eq (next-direction elevator) :down))
-         ;; We go down to base level and then up again to the target floor.
-         (+ (+ (* (current-floor elevator) travel-time)
-               (* floor travel-time))
-            (* (number-of-requests-between elevator 0 floor) stop-time)))
-
-        ((and (< floor (current-floor elevator))
-              (eq (next-direction elevator) :up))
-         ;; We go up to highest requested floor, and then down to the target floor.
-         (+ (* (number-of-floors-between (current-floor elevator) (top-request elevator))
-                                         travel-time)
-            (* (number-of-floors-between (top-request elevator) floor) travel-time)
-            (* (number-of-requests-between elevator (top-request elevator) floor) stop-time)))
-        
-        ((and (> floor (current-floor elevator))
-              (eq (next-direction elevator) :up))
-         ;; We go up to the target floor.
-         (+ (* (number-of-floors-between (current-floor elevator) floor) travel-time)
-            (* (number-of-requests-between elevator (current-floor elevator) floor) stop-time)))
-
-        ((eq floor (current-floor elevator))
-         ;; We're already at the target floor.
-         0)
-        (t (error "This should not happen. At ~A going to ~A in direction ~A"
-                  (current-floor elevator) floor (direction elevator))))))
 
 
 ;;; Testing the elevator algoritm
