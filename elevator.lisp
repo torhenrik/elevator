@@ -80,20 +80,21 @@
       (let ((path nil)
             (elevator-copy
               (make-elevator :top-floor (top-floor elevator)
-                             :requests (requests elevator)
+                             :requests (make-array (top-floor elevator))
                              :current-floor (current-floor elevator)
                              :direction (direction elevator)
                              :emergency-p (emergency-p elevator)
                              :stop-time (stop-time elevator)
                              :travel-time (travel-time elevator))))
+        (dotimes (i (top-floor elevator))
+          (setf (elt (requests elevator-copy) i)
+                (elt (requests elevator) i)))
         (request-floor elevator-copy floor)
         (loop
           do (progn (goto-next-floor elevator-copy)
                     (push (current-floor elevator-copy) path))
           while (not (eq (current-floor elevator-copy) floor)))
         (reverse path))))
-      
-        
         
 ;; Solutions to the assignment
 
@@ -231,7 +232,7 @@
     (assert (eq (next-direction elevator) :up))
     (format t "OK.~%")
     
-    (format t "TEST 5: We're going up with no requests above.  We go down.")
+    (format t "TEST 5: We're going up with no requests above.  We go down.~%")
     (setf elevator (make-elevator :direction :up :current-floor 2))
     (statusreport elevator)
     (assert (eq (next-direction elevator) :down))
